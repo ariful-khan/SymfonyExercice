@@ -1,4 +1,4 @@
-<table class="table table-condensed">
+<table id="book-list" class="table table-condensed">
     <thead>
     <tr>
         <th>#</th>
@@ -17,9 +17,11 @@
                 <td>{{ book.releaseDate|date("m.d.Y") }}</td>
                 <td>{{ book.length|e }}</td>
                 <td>
-                    {% for genre in book.genres %}
-                        <li>{{ genre.name|e }}</li>
-                    {% endfor %}
+                    <ul>
+                        {% for genre in book.genres %}
+                            <li>{{ genre.name|e }}</li>
+                        {% endfor %}
+                    </ul>
                 </td>
             </tr>
         {% endif %}
