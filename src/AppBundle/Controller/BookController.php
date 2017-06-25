@@ -10,18 +10,28 @@ use Symfony\Component\HttpFoundation\Request;
 class BookController extends Controller
 {
     /**
-     * @param Request $request
      * @param BookService $bookService
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, BookService $bookService)
+    public function indexAction(BookService $bookService)
     {
-        var_dump(count($bookService->getAllBookByLimitAndOffset(5, 0)));
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $books = $bookService->getAllBookByLimitAndOffset(5, 0);
+
+        return $this->render('book/index.html.twig', ['books' => $books]);
+    }
+
+    /**
+     * @param BookService $bookService
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/genre/{genre}", name="genre-page")
+     */
+    public function genreAction($genre, BookService $bookService)
+    {
+        $books = $bookService->getBooksByGenreName($genre);
+
+        return $this->render('book/genre.html.twig', ['genre' => $genre, 'books' => $books]);
     }
 }

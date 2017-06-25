@@ -1,0 +1,26 @@
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Release Date</th>
+        <th>Length</th>
+        <th>Genres</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ book.name|e }}</td>
+            <td>{{ book.releaseDate|date("m/d/Y") }}</td>
+            <td>{{ book.length|e }}</td>
+            <td>
+                {% for genre in book.genres %}
+                    <li>{{ genre.name|e }}</li>
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
