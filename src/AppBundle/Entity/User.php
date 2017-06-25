@@ -15,12 +15,12 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
     protected $id;
 
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 }

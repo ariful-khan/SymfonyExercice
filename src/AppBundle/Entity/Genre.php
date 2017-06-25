@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GenreRepository")
@@ -15,28 +16,31 @@ class Genre
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @var string
      */
     private $name;
 
     /**
-     * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="Book", mappedBy="genres")
+     * @var PersistentCollection
      */
     private $books;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->books = new ArrayCollection();
     }
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -44,31 +48,31 @@ class Genre
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return PersistentCollection
      */
-    public function getBooks()
+    public function getBooks(): PersistentCollection
     {
         return $this->books;
     }

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
@@ -15,49 +16,56 @@ class Book
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=256)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="date")
+     * @var \DateTime
      */
     private $releaseDate;
 
     /**
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $length;
 
     /**
-     * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Genre", inversedBy="books")
      * @ORM\JoinTable(name="books_genres")
+     * @var PersistentCollection
      */
     private $genres;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->genres = new ArrayCollection();
     }
 
     /**
      * @ORM\Column(type="boolean")
+     * @var bool
      */
     private $userReadable;
 
     /**
      * @ORM\Column(type="boolean")
+     * @var bool
      */
     private $adminReadable;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -65,63 +73,63 @@ class Book
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getReleaseDate()
+    public function getReleaseDate(): \DateTime
     {
         return $this->releaseDate;
     }
 
     /**
-     * @param mixed $releaseDate
+     * @param \DateTime $releaseDate
      */
-    public function setReleaseDate($releaseDate)
+    public function setReleaseDate(\DateTime $releaseDate)
     {
         $this->releaseDate = $releaseDate;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getLength()
+    public function getLength(): int
     {
         return $this->length;
     }
 
     /**
-     * @param mixed $length
+     * @param string $length
      */
-    public function setLength($length)
+    public function setLength(string $length)
     {
         $this->length = $length;
     }
 
     /**
-     * @return mixed
+     * @return PersistentCollection
      */
-    public function getGenres()
+    public function getGenres(): PersistentCollection
     {
         return $this->genres;
     }
@@ -135,33 +143,33 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getUserReadable()
+    public function getUserReadable(): bool
     {
         return $this->userReadable;
     }
 
     /**
-     * @param mixed $userReadable
+     * @param bool $userReadable
      */
-    public function setUserReadable($userReadable)
+    public function setUserReadable(bool $userReadable)
     {
         $this->userReadable = $userReadable;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getAdminReadable()
+    public function getAdminReadable(): bool
     {
         return $this->adminReadable;
     }
 
     /**
-     * @param mixed $adminReadable
+     * @param bool $adminReadable
      */
-    public function setAdminReadable($adminReadable)
+    public function setAdminReadable(bool $adminReadable)
     {
         $this->adminReadable = $adminReadable;
     }
