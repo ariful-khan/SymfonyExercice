@@ -10,17 +10,19 @@
     </thead>
     <tbody>
     {% for book in books %}
-        <tr>
-            <th scope="row">{{ loop.index }}</th>
-            <td>{{ book.name|e }}</td>
-            <td>{{ book.releaseDate|date("m.d.Y") }}</td>
-            <td>{{ book.length|e }}</td>
-            <td>
-                {% for genre in book.genres %}
-                    <li>{{ genre.name|e }}</li>
-                {% endfor %}
-            </td>
-        </tr>
+        {% if book.userReadable == true %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ book.name|e }}</td>
+                <td>{{ book.releaseDate|date("m.d.Y") }}</td>
+                <td>{{ book.length|e }}</td>
+                <td>
+                    {% for genre in book.genres %}
+                        <li>{{ genre.name|e }}</li>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>

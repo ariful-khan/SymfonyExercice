@@ -2,7 +2,6 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Book;
 use AppBundle\Entity\Genre;
 use AppBundle\Repository\{
     GenreRepository, BookRepository
@@ -32,11 +31,11 @@ class BookService
 
     /**
      * @param $bookName
-     * @return null|Book
+     * @return null|object
      */
     public function getBookByName($bookName)
     {
-        return $this->bookRepository->findOneBy(['name' => $bookName]);
+        return $this->bookRepository->findOneBy(['name' => $bookName, 'userReadable' => true]);
     }
 
     /**
@@ -62,6 +61,6 @@ class BookService
      */
     public function getAllBookByLimitAndOffset($limit = null, $offset = null): array
     {
-        return $this->bookRepository->findBy([], null, $limit, $offset);
+        return $this->bookRepository->findBy(['userReadable' => true], null, $limit, $offset);
     }
 }
