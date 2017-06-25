@@ -34,5 +34,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/book, role: ROLE_USER }
+        - { path: ^/book-api, role: ROLE_USER }
         - { path: ^/genre, role: ROLE_USER }
         - { path: ^/, role: ROLE_USER }
