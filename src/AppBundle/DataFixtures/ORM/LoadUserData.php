@@ -13,12 +13,15 @@ class LoadUserData implements FixtureInterface
         $userAdmin = new User();
         $userAdmin->setUsername('admin');
         $userAdmin->setEmail('admin@symfony.com');
-        $userAdmin->setPassword('admin');
+        $userAdmin->setPlainPassword('admin');
+        $userAdmin->setEnabled(true);
+        $userAdmin->addRole('ROLE_ADMIN');
 
         $user = new User();
         $user->setUsername('user');
         $user->setEmail('user@symfony.com');
-        $user->setPassword('user');
+        $user->setPlainPassword('user');
+        $user->setEnabled(true);
 
         $manager->persist($userAdmin);
         $manager->persist($user);
