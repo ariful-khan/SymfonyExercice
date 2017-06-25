@@ -2,7 +2,9 @@
 
 namespace AppBundle\Repository;
 
-class GenreRepository
+use Doctrine\ORM\EntityRepository;
+
+class GenreRepository extends EntityRepository
 {
 
 }

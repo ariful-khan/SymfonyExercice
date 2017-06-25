@@ -2,7 +2,9 @@
 
 namespace AppBundle\Repository;
 
-class BookRepository
+use Doctrine\ORM\EntityRepository;
+
+class BookRepository extends EntityRepository
 {
 
 }
