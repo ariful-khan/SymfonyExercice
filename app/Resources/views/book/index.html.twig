@@ -6,7 +6,38 @@
             <div class="col-md-8 col-md-push-2">
                 <h1>All Book List</h1>
                 {% include 'common/book.table.twig' with {'books': books} %}
+                <button id="add-book" class="btn btn-default pull-right" type="button">Add More</button>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript">
+      let offset = {{ books|length }};
+      $("#add-book").click(function () {
+        $.ajax({
+          url: "/book-api/getBook/" + offset + "/1",
+          success: function (result) {
+            if (result.length === 0) {
+              return alert("There are no more book.")
+            }
+
+            offset++;
+            let book = result.pop();
+
+            let tr = $('<tr/>');
+            tr.append("<th scope='row'>" + offset + "</th>");
+            tr.append("<td>" + book.name + "</td>");
+            tr.append("<td>" + moment(book.releaseDate.timestamp * 1000).format('MM.DD.YYYY') + "</td>");
+            tr.append("<td>" + book.length + "</td>");
+            tr.append("<td><ul>" + book.genres.reduce((prev, curr) => prev + "<li>" + curr.name + "</li>", "") + "</ul></td>");
+            $('#book-list').find('tbody').append(tr);
+          },
+          error: function () {
+            return alert("An error occurred.");
+          }
+        });
+      });
+    </script>
 {% endblock %}

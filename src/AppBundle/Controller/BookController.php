@@ -56,7 +56,7 @@ class BookController extends Controller
      * @param SerializerFactory $serializerFactory
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/book/getBook/{offset}/{limit}", name="book-page")
+     * @Route("/book-api/getBook/{offset}/{limit}", name="book-api")
      */
     public function getBookAction($offset, $limit, BookService $bookService, SerializerFactory $serializerFactory)
     {
