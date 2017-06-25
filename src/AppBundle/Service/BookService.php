@@ -41,9 +41,9 @@ class BookService
 
     /**
      * @param $genreName
-     * @return array
+     * @return array|object
      */
-    public function getBooksByGenreName($genreName): array
+    public function getBooksByGenreName($genreName)
     {
         /** @var Genre $genre */
         $genre = $this->genreRepository->findOneBy(['name' => $genreName]);
@@ -52,7 +52,7 @@ class BookService
             return [];
         }
 
-        $genre->getBooks();
+        return $genre->getBooks();
     }
 
     /**
