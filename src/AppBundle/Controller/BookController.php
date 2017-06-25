@@ -13,6 +13,7 @@ class BookController extends Controller
 {
     /**
      * @param BookService $bookService
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/", name="homepage")
@@ -26,6 +27,7 @@ class BookController extends Controller
     /**
      * @param $genre
      * @param BookService $bookService
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/genre/{genre}", name="genre-page")
@@ -39,6 +41,7 @@ class BookController extends Controller
     /**
      * @param $nameOfTheBook
      * @param BookService $bookService
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/book/{nameOfTheBook}", name="book-page")
@@ -54,6 +57,7 @@ class BookController extends Controller
      * @param $limit
      * @param BookService $bookService
      * @param SerializerFactory $serializerFactory
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/book-api/getBook/{offset}/{limit}", name="book-api")
