@@ -2,11 +2,14 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Book;
 use AppBundle\Entity\Genre;
 use AppBundle\Repository\{
     GenreRepository, BookRepository
 };
+
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\PersistentCollection;
 
 class BookService
 {
@@ -31,16 +34,16 @@ class BookService
 
     /**
      * @param $bookName
-     * @return null|object
+     * @return Book
      */
-    public function getBookByName($bookName)
+    public function getBookByName($bookName): Book
     {
         return $this->bookRepository->findOneBy(['name' => $bookName, 'userReadable' => true]);
     }
 
     /**
      * @param $genreName
-     * @return array|object
+     * @return array|PersistentCollection
      */
     public function getBooksByGenreName($genreName)
     {
