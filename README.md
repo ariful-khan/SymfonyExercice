@@ -1,14 +1,18 @@
 SymfonyExercice
 ===============
 
-Project setup steps.
+## Requirement
+1. PHP 7.0
+2. MySQL
 
-Run this two command to setup database and load data.
+# Project setup steps.
+
+#### Run this two command to setup database and load data.
 
 1. bin/console doctrine:migrations:migrate
 2. bin/console doctrine:fixtures:load
 
-now you can access all there url
+#### now you can access all there url
 
 1. /
 2. /book/{nameOfTheBook}
