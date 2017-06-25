@@ -8,6 +8,10 @@ use Symfony\Component\Serializer\Serializer;
 
 class SerializerFactory
 {
+    /**
+     * @param null $circularReferenceHandler
+     * @return Serializer
+     */
     public function getSerializer($circularReferenceHandler = null): Serializer
     {
         $encoder = new JsonEncoder();
