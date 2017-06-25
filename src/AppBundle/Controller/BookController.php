@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Service\BookService;
+use AppBundle\Util\SerializerFactory;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BookController extends Controller
 {
@@ -45,5 +47,24 @@ class BookController extends Controller
     {
         $book = $bookService->getBookByName($nameOfTheBook);
         return $this->render('book/book.html.twig', ['book' => $book]);
+    }
+
+    /**
+     * @param $offset
+     * @param $limit
+     * @param BookService $bookService
+     * @param SerializerFactory $serializerFactory
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/book/getBook/{offset}/{limit}", name="book-page")
+     */
+    public function getBookAction($offset, $limit, BookService $bookService, SerializerFactory $serializerFactory)
+    {
+        $serializer = $serializerFactory->getSerializer(function ($object) {
+            return $object->getName();
+        });
+
+        $books = $bookService->getAllBookByLimitAndOffset($limit, $offset);
+        return JsonResponse::fromJsonString($serializer->serialize($books, 'json'));
     }
 }
