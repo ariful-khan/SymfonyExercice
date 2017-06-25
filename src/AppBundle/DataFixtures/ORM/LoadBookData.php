@@ -9,6 +9,9 @@ use AppBundle\Entity\Genre;
 
 class LoadBookData implements FixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $policeGenera = new Genre();

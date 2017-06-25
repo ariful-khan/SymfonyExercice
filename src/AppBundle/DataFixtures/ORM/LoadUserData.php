@@ -8,6 +8,9 @@ use AppBundle\Entity\User;
 
 class LoadUserData implements FixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $userAdmin = new User();
