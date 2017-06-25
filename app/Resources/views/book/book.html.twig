@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-push-2">
+                <h1>Book {{ book.name|e }}'s information</h1>
+                <table class="table table-condensed">
+                    <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ book.name|e }}</td>
+                    </tr>
+                    <tr>
+                        <th>Release Date</th>
+                        <td>{{ book.releaseDate|date("m.d.Y") }}</td>
+                    </tr>
+                    <tr>
+                        <th>Length</th>
+                        <td>{{ book.length|e }}</td>
+                    </tr>
+                    <tr>
+                        <th>Genre</th>
+                        <td>
+                            {% for genre in book.genres %}
+                                <li>{{ genre.name|e }}</li>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
