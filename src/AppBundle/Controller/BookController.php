@@ -18,11 +18,11 @@ class BookController extends Controller
     public function indexAction(BookService $bookService)
     {
         $books = $bookService->getAllBookByLimitAndOffset(5, 0);
-
         return $this->render('book/index.html.twig', ['books' => $books]);
     }
 
     /**
+     * @param $genre
      * @param BookService $bookService
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -31,7 +31,19 @@ class BookController extends Controller
     public function genreAction($genre, BookService $bookService)
     {
         $books = $bookService->getBooksByGenreName($genre);
-
         return $this->render('book/genre.html.twig', ['genre' => $genre, 'books' => $books]);
+    }
+
+    /**
+     * @param $nameOfTheBook
+     * @param BookService $bookService
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/book/{nameOfTheBook}", name="book-page")
+     */
+    public function nameOfTheBookAction($nameOfTheBook, BookService $bookService)
+    {
+        $book = $bookService->getBookByName($nameOfTheBook);
+        return $this->render('book/book.html.twig', ['book' => $book]);
     }
 }
